@@ -1,6 +1,13 @@
 package main
 
-import "fmt"
+// packageのインポート
+// 自モジュール内のパッケージをインポートする場合はディレクトリ名で指定する
+import (
+	"fmt"
+	"golang_learning/mathfunction"
+	"golang_learning/mypackage"
+	"time"
+)
 
 func main() {
 	fmt.Printf("Hello World\n")
@@ -35,4 +42,15 @@ func main() {
 	const password string = "password" // 型宣言する場合
 	fmt.Println(id)
 	fmt.Println(password)
+
+	// 現在時刻の取得
+	now := time.Now()
+	fmt.Println(now)
+
+	// 自モジュール内のパッケージ内関数の使用
+	mypackage.MyPublicFunction()
+
+	a := 9
+	b := mathfunction.Cubed(a)
+	fmt.Println(b)
 }
