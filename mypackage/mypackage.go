@@ -7,8 +7,6 @@ import "fmt"
 // 大文字から始めるものは外部からアクセス可能
 func MyPublicFunction() {
 	fmt.Println("PublicFunction")
-
-	myPrivateFunction()
 }
 
 // 小文字から始めるものは、それを定義したパッケージ内のみで使用可能

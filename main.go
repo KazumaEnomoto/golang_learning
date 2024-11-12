@@ -53,4 +53,6 @@ func main() {
 	a := 9
 	b := mathfunction.Cubed(a)
 	fmt.Println(b)
+
+	mypackage.UsePrivateFunction()
 }
