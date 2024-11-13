@@ -125,6 +125,18 @@ func main() {
 
 	// deferへ渡した関数はスタックされて、最後にスタックしたものから順番に実行される
 	delayForLoop()
+
+	// Golangにおけるポインタの概念
+	mypackage.UsePointer()
+
+	// Golangにおけるstructの概念
+	mypackage.UseStruct()
+
+	// Golangにおけるarray（配列）の使い方
+	mypackage.UseArray()
+
+	// Golangにおけるsliceの概念
+	mypackage.UseSlice()
 }
 
 func delayPrint() {
