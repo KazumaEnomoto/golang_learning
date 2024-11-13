@@ -18,8 +18,8 @@ func RequestSampleData() {
 	url := "https://jsonplaceholder.typicode.com/users/1"
 
 	// GETリクエスト送信
-	resp, err := http.Get(url)
-	if err != nil {
+	resp, err := http.Get(url) // http.Getはレスポンスとエラーの2つの返り値を持つ
+	if err != nil {            // errの値がnilの場合には正常
 		fmt.Println("Error fetching data", err)
 		return
 	}
@@ -37,6 +37,8 @@ func RequestSampleData() {
 		fmt.Println("Error decoding JSON:", err)
 		return
 	}
+	// 代入式ではerrにデコード結果のエラー情報が返され、デコードしたデータがuserに格納される
+	// user構造体のポインタを指定すると、データ構造をコピーせずにデータ構造のメモリアドレスをコピーするだけで済むため、メモリ使用量と処理速度が向上する
 
 	fmt.Printf("ID: %d\n", user.ID)
 	fmt.Printf("Name: %s\n", user.Name)
