@@ -22,6 +22,14 @@ func main() {
 	var isActive bool = false
 	fmt.Println(isActive)
 
+	// 下記のように複数の変数を定義することもできる
+	var i, j int = 1, 2
+	fmt.Println(i, j)
+
+	// 複数定義の省略形
+	foo, bar := "foo", "bar"
+	fmt.Println(foo, bar)
+
 	// 下記のように「var」を省略して記述できる（Goの書き方）
 	// ただし、関数内でのみ使用できるため、パッケージレベルの変数を定義する場合は「var」を使用する
 	x := 333
@@ -37,7 +45,7 @@ func main() {
 	fmt.Println(text)
 	fmt.Println(boolean)
 
-	// Golangにおける定数の定義
+	// Golangにおける定数の定義（定数は:=を使って宣言できない）
 	const id = 1                       // 型宣言しない場合
 	const password string = "password" // 型宣言する場合
 	fmt.Println(id)
@@ -54,5 +62,17 @@ func main() {
 	b := mathfunction.Cubed(a)
 	fmt.Println(b)
 
+	c := 12
+	d := 34
+	e := mathfunction.Add(c, d)
+	fmt.Println(e)
+
 	mypackage.UsePrivateFunction()
+
+	// 型と中身を見る方法
+	v := 42
+	w := "message"
+	fmt.Printf("%T\n", v)
+	fmt.Printf("%v\n", v)
+	fmt.Printf("%v\n", w)
 }
