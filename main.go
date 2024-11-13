@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"golang_learning/mathfunction"
 	"golang_learning/mypackage"
+	"runtime"
 	"time"
 )
 
@@ -75,4 +76,68 @@ func main() {
 	fmt.Printf("%T\n", v)
 	fmt.Printf("%v\n", v)
 	fmt.Printf("%v\n", w)
+
+	// Golangにおけるforループ処理
+	sum := 0
+	for i := 0; i < 10; i++ {
+		sum += i
+	}
+	fmt.Println(sum)
+
+	// 初期化と後処理は省略可能（つまりwhile）
+	sum2 := 1
+	for sum2 < 10 {
+		sum2 += sum2
+	}
+	fmt.Println(sum2)
+
+	// Golangにおけるif条件分岐処理
+	number2 := 0
+	if number2 > 0 {
+		fmt.Println("正の数")
+	} else if number2 == 0 {
+		fmt.Println("ゼロ")
+	} else {
+		fmt.Println("負の数")
+	}
+
+	// Golangではif文の前に代入文を書くことができる（if文スコープ内で使用可能）
+	number3 := 31
+	if v := number3 % 3; v == 0 {
+		fmt.Printf("余りが%vのため3の倍数\n", v)
+	} else {
+		fmt.Printf("余りが%vのため3の倍数ではない\n", v)
+	}
+
+	// Golangにおけるswitch文（switch文でも代入文を書くことができる）
+	fmt.Print("Go runs on ")
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+
+	// defer｜渡した関数の実行を呼び出し元の関数の終わりまで遅延させる
+	delayPrint()
+
+	// deferへ渡した関数はスタックされて、最後にスタックしたものから順番に実行される
+	delayForLoop()
+}
+
+func delayPrint() {
+	defer fmt.Println("world")
+	fmt.Println("hello")
+}
+
+func delayForLoop() {
+	fmt.Println("start for loop")
+
+	for i := 0; i < 5; i++ {
+		defer fmt.Println(i)
+	}
+
+	fmt.Println("done")
 }
