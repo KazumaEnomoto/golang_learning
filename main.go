@@ -4,6 +4,7 @@ package main
 // 自モジュール内のパッケージをインポートする場合はディレクトリ名で指定する
 import (
 	"fmt"
+	"golang_learning/api"
 	"golang_learning/mathfunction"
 	"golang_learning/mypackage"
 	"runtime"
@@ -137,6 +138,9 @@ func main() {
 
 	// Golangにおけるsliceの概念
 	mypackage.UseSlice()
+
+	// サンプルWebAPIを叩いてみる
+	api.RequestSampleData()
 }
 
 func delayPrint() {
