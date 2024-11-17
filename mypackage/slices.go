@@ -43,7 +43,34 @@ func UseSlice() {
 	fmt.Println(a, b)
 	fmt.Println(fruits)
 
-	c := primes[:] // スライスは上限・下限を省略できる（上限はスライスの長さ、下限は0）
+	// スライスは上限・下限を省略できる（上限はスライスの長さ、下限は0）
+	c := primes[:]
 	fmt.Println(c)
 
+	// スライスは長さ（length）と容量（capacity）を持ち、len, capで得ることができる
+	slicePrimes := []int{2, 3, 5, 7, 11, 13}
+	PrintSlice(slicePrimes)
+
+	// スライスの長さ0にする、容量は変わらない
+	slicePrimes = slicePrimes[:0]
+	PrintSlice(slicePrimes)
+
+	// スライスの長さを4にする、容量は変わらない
+	slicePrimes = slicePrimes[:4]
+	PrintSlice(slicePrimes)
+
+	// スライスの長さを8にする▶︎▶︎▶︎容量が6のためエラーとなる
+	// slicePrimes = slicePrimes[:8]
+
+	// スライスの長さを6（上限）にする、容量は変わらない（定義時のスライス）
+	slicePrimes = slicePrimes[:6]
+	PrintSlice(slicePrimes)
+
+	// スライスの1つ目の値を取り除く、長さ・容量はともに5になる
+	slicePrimes = slicePrimes[1:]
+	PrintSlice(slicePrimes)
+}
+
+func PrintSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
