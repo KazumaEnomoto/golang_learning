@@ -42,4 +42,8 @@ func UseSlice() {
 	b[0] = "XXXX"
 	fmt.Println(a, b)
 	fmt.Println(fruits)
+
+	c := primes[:] // スライスは上限・下限を省略できる（上限はスライスの長さ、下限は0）
+	fmt.Println(c)
+
 }

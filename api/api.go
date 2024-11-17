@@ -13,6 +13,7 @@ type User struct {
 }
 
 func RequestSampleData() {
+	fmt.Println("RequestSampleData")
 
 	// APIエンドポイント
 	url := "https://jsonplaceholder.typicode.com/users/1"
