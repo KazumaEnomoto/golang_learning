@@ -1,6 +1,9 @@
 package mypackage
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // GolangにおけるSlice（スライス）の概念
 
@@ -69,8 +72,71 @@ func UseSlice() {
 	// スライスの1つ目の値を取り除く、長さ・容量はともに5になる
 	slicePrimes = slicePrimes[1:]
 	PrintSlice(slicePrimes)
+
+	// スライスの長さを6にする▶︎▶︎▶︎容量が5に減っているためエラーとなる
+	// slicePrimes = slicePrimes[:6]
+
+	// スライスの長さを5（上限）にする、容量は変わらない（定義時の1つ目の値が取り除かれている）
+	slicePrimes = slicePrimes[:5]
+	PrintSlice(slicePrimes)
+
+	// スライスのゼロ値はnilになる
+	var zeroSlice []int
+	if zeroSlice == nil {
+		fmt.Println("nil")
+	}
+
+	// ランダムなスライスを表示
+	CreateRandomSlice()
+
+	// スライスへの値の追加
+	var slice1 []int
+	PrintSlice(slice1)
+
+	slice1 = append(slice1, 0)
+	PrintSlice(slice1)
+
+	slice1 = append(slice1, 1)
+	PrintSlice(slice1)
+
+	slice1 = append(slice1, 1, 2, 3)
+	PrintSlice(slice1)
+
+	// forループで使用するrange、マップ(map)をひとつずつ反復処理する（foreachみたいなもの）
+	pow := []int{1, 2, 4, 8, 16, 32, 64, 128}
+	for i, v := range pow { // 1つ目はインデックス、2つ目はその要素
+		fmt.Printf("2の%d乗は%d\n", i, v)
+	}
+
+	// rangeにおけるインデックスや値は「_」アンダーバーで捨てることができる
+	slice2 := make([]int, 5)
+	for i := range slice2 { // 2つ目（値）がいらない場合は省略可能
+		slice2[i] = 2 * i
+	}
+	PrintSlice(slice2)
+	for _, v := range slice2 { // インデックスがいらない場合は「_」で表記する
+		fmt.Println(v)
+	}
 }
 
 func PrintSlice(s []int) {
+	fmt.Println("PrintSlice")
 	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
+// ランダムな数字を取得して、その長さのスライスを取得する関数
+func CreateRandomSlice() {
+	fmt.Println("CreateRandomSlice")
+	randomNumber := rand.Intn(10)
+	fmt.Println(randomNumber)
+
+	// スライスの長さを指定
+	s := make([]int, randomNumber) // 値はint型のゼロ値「0」となる
+	PrintSlice(s)
+
+	// スライスの長さと容量を指定
+	sliceLen := 5
+	sliceCap := 5
+	s2 := make([]int, sliceLen, sliceCap)
+	PrintSlice(s2)
 }
