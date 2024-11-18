@@ -139,6 +139,9 @@ func main() {
 	// Golangにおけるsliceの概念
 	mypackage.UseSlice()
 
+	// Golangにおけるmapの概念
+	mypackage.UseMaps()
+
 	// サンプルWebAPIを叩いてみる
 	api.RequestSampleData()
 }
