@@ -7,6 +7,7 @@ import (
 	"golang_learning/api"
 	"golang_learning/mathfunction"
 	"golang_learning/mypackage"
+	"math"
 	"runtime"
 	"time"
 )
@@ -142,6 +143,19 @@ func main() {
 	// Golangにおけるmapの概念
 	mypackage.UseMaps()
 
+	// Golangにおいて、関数値は関数の引数にも戻り値にも利用できる
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot)) // 関数を引数に取る
+
+	// 変数に関数値を定義し、引数を渡す
+	pos, neg := adder(), adder()
+	for i := 0; i < 5; i++ {
+		fmt.Println(pos(i), neg(-2*i))
+	}
+
 	// サンプルWebAPIを叩いてみる
 	api.RequestSampleData()
 }
@@ -159,4 +173,19 @@ func delayForLoop() {
 	}
 
 	fmt.Println("done")
+}
+
+// Golangにおいて、関数値は関数の引数にも戻り値にも利用できる
+// 引数fnは関数であり、その関数の引数と返り値の型がfloat64となる。さらにcomputeの返り値もfloat64となる
+func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+}
+
+// 関数の返り値として、引数にint型を持ち、返り値にint型を返す無名関数を返り値としている
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
 }
