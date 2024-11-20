@@ -156,6 +156,9 @@ func main() {
 		fmt.Println(pos(i), neg(-2*i))
 	}
 
+	// Golangにおけるメソッドの概念
+	mypackage.UseMethods()
+
 	// サンプルWebAPIを叩いてみる
 	api.RequestSampleData()
 }
